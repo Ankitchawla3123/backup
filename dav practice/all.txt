@@ -1,0 +1,530 @@
+import numpy as np
+
+# a. Create a 2D array with random values from 0 to 1
+print("(a)")
+print()
+
+ARR1 = np.random.rand(3, 4)
+
+print(ARR1)
+print()
+
+mean_arr = np.mean(ARR1, axis=1)
+std_dev_arr = np.std(ARR1, axis=1)
+variance_arr = np.var(ARR1, axis=1)
+
+print("Mean : ",mean_arr)
+print("Standard Deviation : ",std_dev_arr)
+print("Variance : ",variance_arr)
+
+print()
+
+# b. Create a 2D array of size m x n and reshape it
+print("(b)")
+print()
+
+m = int(input("Enter the number of rows (m): "))
+n = int(input("Enter the number of columns (n): "))
+
+ARR2 = np.random.randint(1, 100, size=(m, n))
+
+print()
+print("Random Array : \n",ARR2)
+print()
+
+print("Shape:", ARR2.shape)
+print("Type:", type(ARR2))
+print("Data Type:", ARR2.dtype)
+print()
+
+ARR2_reshaped = ARR2.reshape((n, m))
+
+print("Reshaped Array : \n",ARR2_reshaped)
+
+print()
+
+# c. Test elements of an array
+print("(c)")
+print()
+
+ID_array = np.array([0, 1, 2, 3, np.nan, 5])
+
+is_zero = ID_array == 0
+is_non_zero = ID_array != 0
+is_nan = np.isnan(ID_array)
+
+zero_indices = np.where(is_zero)[0]
+non_zero_indices = np.where(is_non_zero)[0]
+nan_indices = np.where(is_nan)[0]
+
+print("Zero Indices : ",zero_indices)
+print("Non-Zero Indices : ",non_zero_indices)
+print("NAN Indices : ",nan_indices)
+
+print()
+
+# d. Create and perform operations on arrays
+print("(d)")
+print()
+
+Array1 = np.random.rand(3, 3)
+Array2 = np.random.rand(3, 3)
+Array3 = np.random.rand(3, 3)
+
+Array4 = Array3 - Array2
+Array5 = 2 * Array1
+
+covariance = np.cov(Array1.flatten(), Array4.flatten())[0, 1]
+correlation = np.corrcoef(Array1.flatten(), Array5.flatten())[0, 1]
+
+print("Covariance : ",covariance)
+print("Correlation : ",correlation)
+
+print()
+
+# e. Sum and product of two arrays
+print("(e)")
+print()
+
+Array6 = np.random.rand(10)
+Array7 = np.random.rand(10)
+
+sum_first_half = np.sum(Array6[:5]) + np.sum(Array7[:5])
+product_second_half = np.prod(Array6[5:]) * np.prod(Array7[5:])
+
+print("Sum of First Half of Both Arrays : ",sum_first_half)
+print("Product of Second Half of Both Arrays : ",product_second_half)
+
+print()
+
+# f. Size of memory occupied by an array
+print("(f)")
+print()
+
+Array8 = np.random.rand(100, 100)
+memory_size = Array8.nbytes
+
+print("Random Array : ",Array8)
+print()
+
+print("Memory Size : ",memory_size)
+
+print()
+
+# g. Create, manipulate, and store a 2D array
+print("(g)")
+print()
+
+m = 4
+n = 3
+Array9 = np.random.randint(10, 100, size=(m, n))
+
+Array9[[0, 1]] = Array9[[1, 0]]
+Array9[:, 1] = np.flip(Array9[:, 1])
+
+Array10 = Array9.copy()
+
+print("Random Array : ",Array9)
+
+print("Array with Rows Swapped and Column Reversed : ",Array10)
+
+
+
+
+
+
+
+
+import pandas as pd
+
+#(a)Create a series with 5 elements. Display the series sorted on index and also sorted on values seperately.
+
+lst1 = [3, 1, 4, 2, 5]
+s1 = pd.Series(lst1)
+
+indexSort = s1.sort_index()
+
+valueSort = s1.sort_values()
+
+print("Sorted by Index:")
+print(indexSort)
+print("\nSorted by Values:")
+print(valueSort)
+
+'''(b)Create a series with N elements with some duplicate values.
+Find the minimum and maximum ranks assigned to the values using ‘first’ and ‘max’ methods.'''
+
+
+lst2 = [3, 1, 4, 2, 1, 5]
+s2 = pd.Series(lst2)
+
+minFirst = s2.rank(method='first').min()
+
+max = s2.rank(method='max').max()
+
+print("Minimum Rank using First Method :", minFirst)
+print("Maximum Rank using Max Method :", max)
+
+#(c) Display the index value of the minimum and maximum element of a Series.
+
+
+lst3 = [3, 1, 4, 2, 5]
+s3 = pd.Series(lst3)
+
+minIndex = s3.idxmin()
+
+maxIndex = s3.idxmax()
+
+print("Index of Minimum Element:", minIndex)
+print("Index of Maximum Element:", maxIndex)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import pandas as pd
+import numpy as np
+
+data = np.random.rand(50, 3)
+df = pd.DataFrame(data, columns=['Column1', 'Column2', 'Column3'])
+df1 = pd.DataFrame(data, columns=['Column1', 'Column2', 'Column3'])
+
+num_nulls = int(0.1 * df.size)
+null_indices = np.random.choice(df.size, num_nulls, replace=False)
+df.values.flat[null_indices] = np.nan
+
+# a. Identify and count missing values
+print("(a)")
+print()
+
+missing_values = df.isnull().sum()
+
+print(missing_values)
+print()
+
+# b. Drop columns with more than 5 null values
+print("(b)")
+print()
+
+print("Initial DataFrame : \n",df)
+print()
+
+df = df.dropna(thresh=len(df) - 5, axis=1)
+
+print("DataFrame after Dropping Column with Null Values > 5 : \n",df)
+print()
+
+# c. Identify the row label with the maximum sum of values and drop that row
+print("(c)")
+print()
+
+max_row_label = df.sum(axis=1).idxmax()
+print("Row Label with Max Sum : ",max_row_label)
+print()
+
+df = df.drop(max_row_label)
+
+print("DataFrame after Dropping The Same : \n",df)
+print()
+
+# d. Sort the DataFrame based on the first column
+print("(d)")
+print()
+
+df = df1.sort_values(by = "Column1")
+
+print("DataFrame with Sorted Values : \n",df)
+print()
+
+# e. Remove duplicates from the first column
+print("(e)")
+print()
+
+df = df.drop_duplicates(subset='Column1')
+
+print("DataFrame After Dropping Duplicates : \n",df)
+print()
+
+# f. Find the correlation between the first and second column & the covariance between the second and third column
+print("(f)")
+print()
+
+correlation = df["Column1"].corr(df["Column2"])
+covariance = df["Column2"].cov(df["Column3"])
+
+print("Correlation b/w 1st & 2nd Columns : ",correlation)
+print("Covariance b/w 2nd & 3rd Columns : ",covariance)
+print()
+
+# g. Discretize the second column and create 5 bins
+# print("(g)")
+# print()
+
+# bins=df["Column2_bins"] = pd.cut(df["Column2"], 5)
+
+# print(bins)
+# print()
+# print("Final DataFrame : ")
+# print(df)
+
+
+
+
+
+
+
+
+
+
+
+
+
+import pandas as pd
+
+#(A)
+df1 = pd.read_excel('workshop1.xlsx')
+df2 = pd.read_excel('workshop2.xlsx')
+
+common_attendees = pd.merge(df1, df2, on=['Name', 'Date', 'duration'])
+
+print(common_attendees['Name'])
+
+
+#(B)
+single_attendees = pd.merge(df1, df2, on=['Name', 'Date', 'duration'], how='outer', indicator=True)
+
+single_workshop_only = single_attendees[single_attendees['_merge'] == 'left_only']
+
+print(single_workshop_only['Name'])
+
+
+#(C)
+merged_df = pd.concat([df1, df2])
+
+total_records = len(merged_df)
+
+print("Total Number of Records:", total_records)
+
+
+#(D)
+merged_df = pd.concat([df1, df2]).set_index(['Name', 'Date'])
+
+print(merged_df)
+
+#Descriptive Stats
+stats = merged_df.describe()
+
+print(stats)
+
+
+
+
+
+
+
+
+
+
+
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris
+
+iris = load_iris()
+data = pd.DataFrame(data=iris.data, columns=iris.feature_names)
+data['target'] = iris.target
+
+print("(a) Display dataset information")
+print("Dataset Information:")
+print(data.info())
+print()
+
+print("(b) Find the number of missing values")
+missing_values = data.isnull().sum()
+print("\nNumber of Missing Values in Each Column:")
+print(missing_values)
+print()
+
+print("(c) Plot bar chart for class label frequency")
+plt.figure(figsize=(6, 4))
+sns.countplot(data['target'])
+plt.xlabel('Iris Flower Type')
+plt.ylabel('Frequency')
+plt.title('Frequency of Each Iris Flower Type')
+plt.show()
+print()
+
+print("(d) Scatter plot for Petal Length vs Sepal Length")
+plt.figure(figsize=(6, 4))
+sns.scatterplot(x=data['sepal length (cm)'], y=data['petal length (cm)'], hue=data['target'])
+plt.xlabel('Sepal Length (cm)')
+plt.ylabel('Petal Length (cm)')
+plt.title('Scatter Plot: Petal Length vs Sepal Length')
+plt.show()
+print()
+
+print("(e) Plot density distribution for Petal width")
+plt.figure(figsize=(6, 4))
+sns.kdeplot(data['petal width (cm)'], fill=True)
+plt.xlabel('Petal Width (cm)')
+plt.ylabel('Density')
+plt.title('Density Distribution of Petal Width')
+plt.show()
+print()
+
+print("(f) Use a pair plot for pairwise bivariate distribution")
+sns.pairplot(data, hue='target')
+plt.show()
+print()
+
+print("(g) Draw a heatmap for two numeric attributes")
+numeric_attributes = data.select_dtypes(include=['float64'])
+sns.heatmap(numeric_attributes.corr(), annot=True)
+plt.show()
+print()
+
+print("(h) Compute basic statistics for numeric features")
+statistics = data.describe()
+print("\nStatistics for Numeric Features:")
+print(statistics)
+print()
+
+print("(i) Compute correlation coefficients and plot a heatmap")
+correlation_matrix = data.corr()
+sns.heatmap(correlation_matrix, annot=True)
+plt.show()
+
+
+
+
+
+
+
+
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Assuming df is your DataFrame
+# Load your dataset if not already loaded
+df = pd.read_csv("Titanic.csv")
+
+# a. Clean the data by dropping the column which has the largest number of missing values.
+column_with_max_missing = df.isnull().sum().idxmax()
+df_cleaned = df.drop(columns=[column_with_max_missing])
+
+# b. Find total number of passengers with age more than 30
+passengers_age_more_than_30 = df_cleaned[df_cleaned['Age'] > 30]
+total_passengers_age_more_than_30 = len(passengers_age_more_than_30)
+print("Total passengers with age more than 30:", total_passengers_age_more_than_30)
+
+# c. Find total fare paid by passengers of second class
+total_fare_second_class = df_cleaned[df_cleaned['Pclass'] == 2]['Fare'].sum()
+print("Total fare paid by second-class passengers:", total_fare_second_class)
+
+# d. Compare number of survivors of each passenger class
+survivors_by_class = df_cleaned.groupby('Pclass')['Survived'].sum()
+print("Number of survivors by class:\n", survivors_by_class)
+
+# e. Compute descriptive statistics for age attribute gender wise
+descriptive_stats_age_gender = df_cleaned.groupby('Sex')['Age'].describe()
+print("Descriptive statistics for age attribute gender-wise:\n", descriptive_stats_age_gender)
+
+# f. Draw a scatter plot for passenger fare paid by Female and Male passengers separately
+plt.scatter(df_cleaned[df_cleaned['Sex'] == 'female']['PassengerId'], df_cleaned[df_cleaned['Sex'] == 'female']['Fare'], label='Female')
+plt.scatter(df_cleaned[df_cleaned['Sex'] == 'male']['PassengerId'], df_cleaned[df_cleaned['Sex'] == 'male']['Fare'], label='Male')
+plt.xlabel('PassengerId')
+plt.ylabel('Fare')
+plt.legend()
+plt.show()
+
+# g. Compare density distribution for features age and passenger fare
+sns.kdeplot(df_cleaned['Age'], label='Age')
+sns.kdeplot(df_cleaned['Fare'], label='Fare')
+plt.xlabel('Value')
+plt.ylabel('Density')
+plt.legend()
+plt.show()
+
+# h. Draw the pie chart for three groups labelled as class 1, class 2, class 3 respectively displayed in different
+# colours. The occurrence of each group converted into percentage should be displayed in the pie chart.
+class_counts = df_cleaned['Pclass'].value_counts()
+plt.pie(class_counts, labels=class_counts.index, autopct='%1.1f%%', colors=['skyblue', 'lightgreen', 'lightcoral'])
+plt.title('Distribution of Passenger Classes')
+plt.show()
+
+# i. Find % of survived passengers for each class and answer the question “Did class play a role in survival?”.
+survival_percent_by_class = (df_cleaned.groupby('Pclass')['Survived'].sum() / df_cleaned.groupby('Pclass')['PassengerId'].count()) * 100
+print("Percentage of survived passengers for each class:\n", survival_percent_by_class)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import pandas as pd
+
+data = {'FamilyName': ['Shah', 'Vats', 'Vats', 'Kumar', 'Vats', 'Kumar', 'Shah', 'Shah', 'Kumar', 'Vats'],
+        'Gender': ['Male', 'Male', 'Female', 'Female', 'Female', 'Male', 'Male', 'Female', 'Female', 'Male'],
+        'MonthlyIncome': [44000.00, 65000.00, 43150.00, 66500.00, 255000.00, 103000.00, 55000.00, 112400.00, 81030.00, 71900.00]}
+
+df = pd.DataFrame(data)
+
+# a. Calculate and display familywise gross monthly income.
+familywise_gross = df.groupby('FamilyName')['MonthlyIncome'].sum()
+print()
+print("a. Familywise Gross Monthly Income : ")
+print(familywise_gross)
+print()
+
+# b. Display the highest and lowest monthly income for each family name.
+highest_income = df.groupby('FamilyName')['MonthlyIncome'].max()
+lowest_income = df.groupby('FamilyName')['MonthlyIncome'].min()
+print("b. Highest Monthly Income : ")
+print(highest_income)
+print()
+print("Lowest Monthly Income : ")
+print(lowest_income)
+print()
+
+# c. Calculate and display monthly income of all members earning less than Rs. 80000.00.
+income_below_80000 = df[df['MonthlyIncome'] < 80000.00]
+print("c. Monthly Income of Members Earning Less than Rs. 80000.00:")
+print(income_below_80000[['FamilyName', 'MonthlyIncome']])
+print()
+
+# d. Display total number of females along with their average monthly income.
+female_data = df[df['Gender'] == 'Female']
+total_females = female_data.shape[0]
+average_income_female = female_data['MonthlyIncome'].mean()
+print("d. Total Number of Females and Their Average Monthly Income : ")
+print(f"Total Females : {total_females}")
+print(f"Average Monthly Income of Females : {average_income_female:.2f}")
+print()
+
+# e. Delete rows with Monthly income less than the average income of all members.
+average_income_all = df['MonthlyIncome'].mean()
+df = df[df['MonthlyIncome'] >= average_income_all]
+print("e. DataFrame after deleting rows with Monthly income less than the average income : ")
+print(df)

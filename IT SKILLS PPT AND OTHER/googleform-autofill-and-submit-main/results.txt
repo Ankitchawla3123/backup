@@ -1,0 +1,42 @@
+{
+    # Please select your age group  (required)
+    #   Options: ['18-24', '25-34', '35-44', '45-54', '55  and above']
+    "entry.1435569829": "",
+    # Are you aware of cybercrimes such as hacking, phishing, and identity theft? 
+    #   Options: ['Yes, I am fully aware', 'Somewhat aware', 'No, I have limited knowledge']
+    "entry.189311140": "",
+    # On a scale of 1 to 5, how familiar are you with cybercrimes such as hacking, phishing, and identity theft?:  -  (required)
+    #   Options: ['1', '2', '3', '4', '5']
+    "entry.247443442": "",
+    # Have you encountered phishing attacks? (required)
+    #   Options: ['Yes, multiple times', 'Yes, once', "No, but I'm familiar with the concept", "No, and I'm not familiar with the concept"]
+    "entry.1491440244": "",
+    # Have you ever received suspicious emails or messages asking for your personal information? (required)
+    #   Options: ['Yes, I have received such emails/messages', 'No, I have not received any suspicious emails/messages', 'Not sure']
+    "entry.1116964255": "",
+    # On a scale of 1 to 5, how aware are you of risks sharing personal info on social media?
+:  -  (required)
+    #   Options: ['1', '2', '3', '4', '5']
+    "entry.995464935": "",
+    # Have you or anyone you know ever been a victim of identity theft where personal information was stolen and misused? (required)
+    #   Options: ['Yes', 'No', 'Not sure']
+    "entry.730369160": "",
+    # Do you currently use net banking and UPI (Unified Payments Interface) services for financial transactions? (required)
+    #   Options: ['Yes, both.', 'Only net banking.', 'Only UPI.', 'No, neither.', 'Prefer not to answer.']
+    "entry.1523222619": "",
+    # On a scale of 1 to 5, how would you rate the security of net banking and UPI services for conducting transactions?:  -  (required)
+    #   Options: ['1', '2', '3', '4', '5']
+    "entry.999012880": "",
+    # Do you know how to recognize secure websites (e.g., those with HTTPS encryption) to ensure safe online transactions? (required)
+    #   Options: ['Yes, I know how to recognize secure websites', "I'm not sure", "No, I don't know how to recognize secure website"]
+    "entry.1281626737": "",
+    # Have you ever fallen victim to online scams or fraudulent schemes (e.g., fake investment opportunities, online shopping scams)? (required)
+    #   Options: ['Yes, multiple times', 'Yes, once', 'No', 'Prefer not to answer']
+    "entry.1428937704": "",
+    # Which of the following sources do you rely on to stay informed about cybercrime? (required)
+    #   Options: ['Internet', 'News', 'Social media', 'all of  the above']
+    "entry.895250257": "",
+    # In your opinion, how important is cybercrime awareness and education in today's digital age? (required)
+    #   Options: ['Very important', 'Important', 'Neutral', 'Not very important', 'Not important at all']
+    "entry.60193812": "",
+}
